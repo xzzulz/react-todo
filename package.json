@@ -1,0 +1,15 @@
+{
+  "name": "react-todo",
+  "version": "0.1.0",
+  "description": "A react todo app made for learning",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "todo",
+    "react"
+  ],
+  "author": "nzonbi",
+  "license": "MIT"
+}
