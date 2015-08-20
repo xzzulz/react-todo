@@ -1,0 +1,4 @@
+.settings
+.npmignore
+node_modules
+app/dev/.module-cache/
