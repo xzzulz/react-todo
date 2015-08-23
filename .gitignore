@@ -2,3 +2,5 @@
 .npmignore
 node_modules
 app/dev/.module-cache/
+app/dev/
+app/rel/
