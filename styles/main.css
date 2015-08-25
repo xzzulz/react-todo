@@ -53,12 +53,61 @@ div.itemClose {
 
 @media all and (max-width: 800px) {
     div.itemText {
-        width: 78%;
+        width: 85%;
     }
     #box {
-        max-width: 96%;
+        max-width: 100%;
+        margin: 0px auto;
     }
     #newItem {
         width: 76%;
+    }
+    div.itemClose {
+        padding-left: 2%;
+    }
+}
+
+@media all and (max-width: 600px) {
+    div.itemText {
+        width: 80%;
+    }
+    #box {
+        max-width: 100%;
+    }
+    #newItem {
+        width: 70%;
+    }
+    div.itemClose {
+        padding-left: 2%;
+    }
+}
+
+@media all and (max-width: 500px) {
+    div.itemText {
+        width: 75%;
+    }
+    #box {
+        max-width: 100%;
+    }
+    #newItem {
+        width: 70%;
+    }
+    div.itemClose {
+        padding-left: 2%;
+    }
+}
+
+@media all and (max-width: 400px) {
+    div.itemText {
+        width: 70%;
+    }
+    #box {
+        max-width: 100%;
+    }
+    #newItem {
+        width: 65%;
+    }
+    div.itemClose {
+        padding-left: 2%;
     }
 }
