@@ -1,0 +1,64 @@
+body {
+    margin: 0;
+    background-color: #dadada;
+    font-family: Verdana, sans-serif;
+    font-size: 1.1em;
+}
+
+#box {
+    max-width: 800px;
+    margin: 60px auto;
+}
+
+#top {
+    margin: 20px;
+    padding: 2px 20px;
+    background-color: #6d73e5;
+    text-align: center;
+}
+
+#newItem {
+    margin-left: 35px;
+    width: 85%;
+    font-size: 1em;
+}
+
+#addIcon {
+    vertical-align: middle;
+    margin-left: 4%;
+}
+
+div.item {
+    margin: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    overflow: auto;
+}
+
+div.itemIcon {
+    float: left;
+    width: 40px;
+}
+
+div.itemText {
+    float: left;
+    width: 630px;
+}
+
+div.itemClose {
+    float: left;
+    width: 25px;
+    padding-left: 25px;
+}
+
+@media all and (max-width: 800px) {
+    div.itemText {
+        width: 78%;
+    }
+    #box {
+        max-width: 96%;
+    }
+    #newItem {
+        width: 76%;
+    }
+}
