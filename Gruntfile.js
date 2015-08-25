@@ -15,15 +15,22 @@ module.exports = function(grunt) {
         }
     },
 
-    
+
     uglify: {
       // minify and combine all js files into rel (release) folder
-      rel: {
+      relJs: {
         files: [{
           'app/rel/js/bundle.min.js': [
-            'app/dev/js/*.js', 
-            'app/dev/lib/*.js'
+            'app/dev/js/*.js'
           ]
+        }]
+      },
+      relLib: {
+        files: [{
+          expand: true,
+          cwd: 'app/src/lib',
+          src: '*.js',
+          dest: 'app/rel/lib'
         }]
       },
       // minify lib files into dev folder
@@ -37,7 +44,7 @@ module.exports = function(grunt) {
       }
     },
 
-    
+
     copy: {
       // copy lib .js files into dev folder
       devLib: {
@@ -60,6 +67,39 @@ module.exports = function(grunt) {
         src: '*.css',
         dest: 'app/dev/styles/'
       },
+
+      // copy html files into rel folder
+      relHtml: {
+        expand: true,
+        cwd: 'app/src/',
+        src: '*.html',
+        dest: 'app/rel/'
+      },
+      // copy css files into rel folder
+      relCss: {
+        expand: true,
+        cwd: 'app/src/styles/',
+        src: '*.css',
+        dest: 'app/rel/styles/'
+      },
+      // copy img files into rel folder
+      relImg: {
+        expand: true,
+        cwd: 'app/src/img/',
+        src: '*',
+        dest: 'app/rel/img/'
+      },
+    },
+
+    replace: {
+      updateJsLink: {
+        src: ['app/src/index.html'],             // source files array (supports minimatch)
+        dest: 'app/rel/index.html',             // destination directory or file
+        replacements: [{
+          from: 'js/index.js',                   // string replacement
+          to: 'js/bundle.min.js'
+        }]
+      }
     },
 
 
@@ -104,16 +144,15 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint-jsx');
-
+  grunt.loadNpmTasks('grunt-text-replace');
 
   // Default task(s).
 
 
-  // tasks
+  // developemnt build tasks
 
   grunt.registerTask('jsxdev', ['react']);
 
-  grunt.registerTask('min', ['uglify:rel']);
   grunt.registerTask('libdevmin', ['uglify:devLibMin']);
 
   grunt.registerTask('libdev', ['copy:devLib']);
@@ -121,15 +160,32 @@ module.exports = function(grunt) {
   grunt.registerTask('cssdev', ['copy:devCss']);
 
   grunt.registerTask('builddev', [
-    'jsxdev', 
+    'jsxdev',
     'libdev',
     'htmldev',
     'cssdev'
   ]);
 
+  // release build tasks
+  grunt.registerTask('min', ['uglify:rel']);
+  grunt.registerTask('minJs', ['uglify:relJs']);
+  grunt.registerTask('minLib', ['uglify:relLib']);
+
+  grunt.registerTask('htmlrel', ['replace:updateJsLink']);
+  grunt.registerTask('cssrel', ['copy:relCss']);
+  grunt.registerTask('imgrel', ['copy:relImg']);
+
+  grunt.registerTask('buildrel', [
+    'minJs',
+    'minLib',
+    'htmlrel',
+    'cssrel',
+    'imgrel'
+  ]);
+
   grunt.registerTask('watchjs', ['watch:js']);
   grunt.registerTask('watchhtml', ['watch:html']);
   grunt.registerTask('watchcss', ['watch:css']);
-  
+
   grunt.registerTask('lint', ['jshint-jsx:js']);
 };
