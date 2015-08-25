@@ -67,7 +67,13 @@ module.exports = function(grunt) {
         src: '*.css',
         dest: 'app/dev/styles/'
       },
-
+      // copy img files into dev folder
+      devImg: {
+        expand: true,
+        cwd: 'app/src/img/',
+        src: '*',
+        dest: 'app/dev/img/'
+      },
       // copy html files into rel folder
       relHtml: {
         expand: true,
@@ -158,12 +164,14 @@ module.exports = function(grunt) {
   grunt.registerTask('libdev', ['copy:devLib']);
   grunt.registerTask('htmldev', ['copy:devHtml']);
   grunt.registerTask('cssdev', ['copy:devCss']);
+  grunt.registerTask('imgdev', ['copy:devImg']);
 
   grunt.registerTask('builddev', [
     'jsxdev',
     'libdev',
     'htmldev',
-    'cssdev'
+    'cssdev',
+    'imgdev'
   ]);
 
   // release build tasks
